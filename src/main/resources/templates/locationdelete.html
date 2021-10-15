@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>SuperHero Sightings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/main.css">
+  </head>
+  <body>
+    <!-- Page Body-->
+    <div class="container-fluid">
+      <div class="row" id="header">
+        <div class="col-12 text-center">
+          <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+        </div>
+      </div>
+      <div class="row justify-content-center" id="navBar">
+        <nav class="navbar navbar-text navbar-expand-lg navbar-light "
+        th:replace="fragments/commonfragments :: navbar">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/sightings">Sightings</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/identities">Identities</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/powers">Powers</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/organizations">Organizations</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/locations">Locations</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+
+    <div class="row pageBodyRow">
+      <div class="col-12 pageBodyCol">
+
+        <div class="row pageDescription">
+          <div class="col-11 alert alert-danger">
+            <h3
+            th:text="|Delete ${location.locName}|">Delete {Location Name}</h3>
+          </div>
+        </div>
+
+
+        <div class="row addEntityRow">
+          <div class="col-12 addEntityCol">
+            <!-- Form goes here -->
+            <form class="addEntityForm addlocationForm" action="" method="post"
+            th:action="@{{id} (id=( ${location.locId} )) }" th:object="${location}">
+
+              <div th:replace="fragments/locationfragments :: locationFormBodyReadOnly">
+
+              </div>
+
+              <div class="row alert alert-danger">
+                <div>Deleting this Location will DELETE the following SIGHTINGS AND ORGANIZATIONS :</div>
+                <div>Please change the Location of all SIGHTINGS AND ORGANIZATIONS you don't want to lose.</div>
+              </div>
+
+              <div th:replace="fragments/sightingfragments :: sightingList" class="row sightingList">
+                <div class="col-12 sightingListCol">
+                  <!--Sightings go here-->
+
+                  <div class="row identityRow"
+                  th:each="sighting : ${sightings}">
+                    <div class="col-10 col-m-8 col-lg-6 sightingWrapper mx-auto">
+                      <div class="row sightingHead d-flex">
+                        <!--Need a row thjat's split into 2 colums for Loc and Date,
+                      and a row for description-->
+                        <div class="col-12">
+                          <div class="row sightingLocDateRow">
+                            <div class="col-8 sightingLocation">
+                              <span th:text="${sighting.location.locName}">Avenger's Tower</span>
+                            </div>
+                            <div class="col-4 sightingDate">
+                              <span th:text="${sighting.sightingDate}">9/8/2021</span>
+                            </div>
+                          </div>
+                          <div class="row sightingDescriptionRow">
+                            <div class="col-12 sightingDescription">
+                              <span th:text="${sighting.sightingDescription}">Just palling around. This description could wind up being pretty long though. Wie sieht das? Und wann es ist sehr lang? Ich hoffe est funktioniert gut. </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row sightIdentityListRow list-unstyled">
+                        <div class="col-6 sightingHeroList">
+                          <ul>
+                            <li class="media"
+                            th:each="id : *{sighting.identities}"
+                            th:if="${id.hero} == true">
+                              <img src="../img/hulk.webp" class="mr-3 idImg" alt="">
+                              <div class="media-body sightingIdName"
+                              th:text="${id.identityName}">
+                                The Hulk
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-6 sightingVillianList list-unstyled">
+                          <ul>
+                            <li class="media"
+                            th:each="id : *{sighting.identities}"
+                            th:if="${id.hero} == false">
+                              <img src="../img/docOc.png" class="mr-3 idImg" alt="">
+                              <div class="media-body sightingIdName"
+                              th:text="${id.identityName}">
+                                Doc Ock
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="row entityControlsRow entityControls">
+                        <div class="col-4">
+                          <a class="detailsBtn" href="#"
+                          th:href="@{/sighting/{id} (id=(${sighting.sightingId}) )}">
+                            <img src="../../img/info.png" alt="edit" class="controlBtn">
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!--End of sightings-->
+                <!--Orgs -->
+                <div class="row organizationList">
+                  <div class="col-12 organizationListCol">
+                    <div class="row organizationListTitleRow listTitleRow">
+                      <div class="col-3 organizationListTitleName">
+                        Organization
+                      </div>
+                      <div class="col-4 organizationListTitleDescription">
+                        Description
+                      </div>
+                      <div class="col-3 organizationListTitleAddress">
+                        Address
+                      </div>
+                      <div class="col-2 organizationListTitleControls">
+                      </div>
+                    </div>
+                    <!--organization identities go here-->
+
+                    <div class="row entityRow"
+                    th:each="(org : ${orgs})">
+                      <div class="col-3 organizationName">
+                          <span
+                          th:text="${org.orgName}">The Avengers</span>
+                      </div>
+                      <div class="col-4 organizationDescription">
+                        <span
+                        th:text="${org.orgDescription}">Save the world like a few thousand times or w/e.</span>
+                      </div>
+                      <div class="col-3 organizationAddress">
+                        <div class="row addressLine1">
+                          <span
+                          th:text="${org.location.street}">4 Times Square</span>
+                        </div>
+                        <div class="row addressLine2">
+                          <span
+                          th:text="${org.location.street2}">Suite 100</span>
+                        </div>
+                        <div class="row addressLine3">
+                          <span
+                          th:text="|${org.location.city} ,  ${org.location.state} ${org.location.zip}|"
+                          >New York, NY 10036</span>
+                        </div>
+                        <div class="row addressCoordinates">
+                          <span
+                          th:text="|${org.location.latitude} ,  ${org.location.longitude}|"
+                          >15.2323, -30.7854</span>
+                        </div>
+                      </div>
+                      <div class="col-2 d-flex entityControls">
+                        <a href="#"
+                            th:href="@{/organization/{id} (id=( ${org.orgId} ) ) }">
+                          <img src="/img/info.png" alt="info" class="img-fluid controlBtn">
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- End orgs -->
+
+                </div>
+              </div>
+
+              <div th:replace="fragments/organizationfragments :: organizationList">
+
+              </div>
+              <div th:replace="fragments/commonfragments :: btnsBackConfirmDelete">
+
+              </div>
+
+            </form>
+            <!--  -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- JS -->
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/90b26b5e3d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../js/main.js">    </script>
+    <script type="text/javascript" src="../../js/delete.js">    </script>
+  </body>
+</html>

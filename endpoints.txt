@@ -1,0 +1,46 @@
+ENDPOINTS:
+
+GET  /sightings/
+GET  /sighting/new
+POST /sighting/new
+GET  /sighting/{sightingId}
+GET  /sighting/edit/{sightingId}
+POST /sighting/edit/{sightingId}
+GET  /sighting/delete/{sightingId}
+POST /sighting/delete/{sightingId}
+
+GET  /identities/
+GET  /identity/new
+POST /identity/new
+GET  /identity/{identityId}
+GET  /identity/edit/{identityId}
+POST /identity/edit/{identityId}
+GET  /identity/delete/{identityId}
+POST /identity/delete/{identityId}
+
+GET  /powers/
+GET  /power/new
+POST /power/new
+GET  /power/{powerId}
+GET  /power/edit/{powerId}
+POST /power/edit/{powerId}
+GET  /power/delete/{powerId}
+POST /power/delete/{powerId}
+
+GET  /organizations/
+GET  /organization/new
+POST /organization/new
+GET  /organization/{orgId}
+GET  /organization/edit/{orgId}
+POST /organization/edit/{orgId}
+GET  /organization/delete/{orgId}
+POST /organization/delete/{orgId}
+
+GET  /locations/
+GET  /location/new
+POST /location/new
+GET  /location/{locId}
+GET  /location/edit/{locId}
+POST /location/edit/{locId}
+GET  /location/delete/{locId}
+POST /location/delete/{locId}

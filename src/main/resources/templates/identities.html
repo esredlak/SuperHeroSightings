@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>SuperHero Sightings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body>
+    <!-- Page Body-->
+    <div class="container-fluid">
+      <div class="row" id="header">
+        <div class="col-12 text-center">
+          <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+        </div>
+      </div>
+      <div class="row justify-content-center" id="navBar">
+        <nav class="navbar navbar-text navbar-expand-lg navbar-light"
+        th:replace="fragments/commonfragments :: navbar">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/sightings">Sightings</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/identities">Identities</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/powers">Powers</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/organizations">Organizations</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/locations">Locations</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+
+    <div class="row pageBodyRow">
+      <div class="col-12 pageBodyCol">
+        <div class="row pageDescription">
+          <div class="col-11">
+            <h3>Identities</h3>
+          </div>
+          <br>
+          <div class="col-11 col-sm-10 ">
+            --insert descriptive paragraph about this page.--
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row pageControlsRow">
+          <div class="col-12 pageControlsCol">
+            <div class="row newEntityRow">
+              <a class="btn btn-outline-primary mx-auto" href="../identity/new">New Identity</a>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+
+        <div class="row identityList" th:replace="fragments/identityfragments :: identityList">
+          <div class="col-12 identityListCol">
+
+            <div class="row heroList">
+              <div class="col-12 heroListCol">
+
+                <div class="row heroListTitleRow listTitleRow">
+                  <div class="col-4 heroListTitleName">
+                    Hero
+                  </div>
+                  <div class="col-3 heroListTitlePowers">
+                    Power(s)
+                  </div>
+                  <div class="col-3 heroListTitleOrganizations">
+                    Organization(s)
+                  </div>
+                  <div class="col-2 heroListTitleControls">
+                  </div>
+                </div>
+                <!--hero identities go here-->
+
+                <div class="row entityRow "
+                    th:each="id : ${identities}"
+                    th:if="${id.hero} == true">
+
+                  <div class="col-4 identityName">
+                      <img src="../img/hulk.webp" class="mr-3 idImg" alt="">
+                      <span
+                      th:text="${id.identityName}">The Hulk</span>
+                  </div>
+
+                  <div class="col-3 identityPowers">
+                    <ul>
+                      <li
+                      th:each="power : ${id.powers}"
+                      th:text="${power.powerName}"
+                      >Super Strength</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-3 identityOrganizations">
+                    <ul>
+                      <li
+                      th:each="org : ${orgsForSupers[__${id.identityId}__]}"
+                      th:text="${org.orgName}">The Avengers</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-2 d-flex entityControls">
+                    <a href="#"
+                        th:href="@{identity/{id} (id=( ${id.identityId} ) ) }">
+                      <img src="../img/info.png" alt="info" class="img-fluid controlBtn">
+                    </a>
+                    <a href="#"
+                        th:href="@{identity/edit/{id} (id=( ${id.identityId} ) ) }">
+                      <img src="../img/edit.png" alt="edit" class="img-fluid controlBtn">
+                    </a>
+                    <a href="#"
+                        th:href="@{identity/delete/{id} (id=( ${id.identityId} ) ) }">
+                      <img src="../img/delete.png" alt="delete" class="img-fluid controlBtn">
+                    </a>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row villianList">
+              <div class="col-12 villianListCol">
+
+                <div class="row villianListTitleRow listTitleRow">
+                  <div class="col-4 heroListTitleName">
+                    Villian/Unknown
+                  </div>
+                  <div class="col-3 heroListTitlePowers">
+                    Power(s)
+                  </div>
+                  <div class="col-3 heroListTitleOrganizations">
+                    Organization(s)
+                  </div>
+                  <div class="col-2 heroListTitleControls">
+                  </div>
+                </div>
+                <!--villian identities go here-->
+
+                <div class="row entityRow"
+                th:each="id : ${identities}"
+                th:if="${id.hero} == false">
+                  <div class="col-4 identityName">
+                      <img src="../img/docOc.png" class="mr-3 idImg" alt="">
+                      <span
+                      th:text="${id.identityName}" >Doc Oc</span>
+                  </div>
+                  <div class="col-3 identityPowers">
+                    <ul>
+                      <li
+                      th:each="power : ${id.powers}"
+                      th:text="${power.powerName}">Big Brain</li>
+                    </ul>
+                  </div>
+                  <div class="col-3 identityOrganizations">
+                    <ul>
+                      <li
+                      th:each="org : ${orgsForSupers[__${id.identityId}__]}"
+                      th:text="${org.orgName}">Sinister Six</li>
+                    </ul>
+                  </div>
+                  <div class="col-2 d-flex entityControls">
+                    <a href="#"
+                        th:href="@{identity/{id} (id=( ${id.identityId} ) ) }">
+                      <img src="../img/info.png" alt="info" class="img-fluid controlBtn">
+                    </a>
+                    <a href="#"
+                        th:href="@{identity/edit/{id} (id=( ${id.identityId} ) ) }">
+                      <img src="../img/edit.png" alt="edit" class="img-fluid controlBtn">
+                    </a>
+                    <a href="#"
+                        th:href="@{identity/delete/{id} (id=( ${id.identityId} ) ) }">
+                      <img src="../img/delete.png" alt="delete" class="img-fluid controlBtn">
+                    </a>
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- JS -->
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/90b26b5e3d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../js/main.js">    </script>
+  </body>
+</html>

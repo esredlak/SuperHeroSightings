@@ -1,0 +1,103 @@
+<div th:fragment="powerFormBody">
+  <input hidden th:value="${power.powerId}" type="text" name="powerId" id="entityId">
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="powerName">Name</label>
+    <div class="col-4">
+      <input type="text" name="powerName" th:field="*{powerName}" class="form-control">
+      <p th:if="${#fields.hasErrors('powerName')}"
+        th:errors="*{powerName}" class="alert alert-warning"></p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="powerDescription">Description</label>
+    <div class="col-4">
+      <textarea name="powerDescription" rows="4"
+      th:field="*{powerDescription}" class="form-control"></textarea>
+      <p th:if="${#fields.hasErrors('powerDescription')}"
+        th:errors="*{powerDescription}" class="alert alert-warning"></p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+</div>
+
+<div th:fragment="powerFormBodyReadOnly">
+  <input hidden th:value="${power.powerId}" type="text" name="powerId" id="entityId">
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="powerName">Name</label>
+    <div class="col-4">
+      <input type="text" name="powerName" th:field="*{powerName}"
+      class="form-control" readonly>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="powerDescription">Description</label>
+    <div class="col-4">
+      <textarea name="powerDescription" rows="4"
+      th:field="*{powerDescription}" class="form-control" readonly></textarea>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+</div>
+
+<div class="row powerList" th:fragment="powerList">
+  <div class="col-12 powerListCol">
+    <div class="row powerListContainer">
+      <!--Using px-auto on powerWrapper causes partially filled rows to be left aligned.
+        This maintains even, consistent columns.-->
+      <!--Using mx-auto on powerWrapper causes partially filled rows to be centered-->
+      <div class="powerWrapper col-6 col-sm-4 col-lg-3 px-auto "
+      th:each="power : ${powers}">
+
+        <div class="powerTitleRow">
+          <div
+          th:text="${power.powerName}"> Invisibility</div>
+          <hr>
+        </div>
+
+        <div class="powerDetailRow">
+          <div
+          th:text="${power.powerDescription}"
+          class="powerDescription"
+          >Details. Some of them might get kinda long.</div>
+        </div>
+
+        <div class="entityControls row ">
+          <div class="col-4">
+            <a href="#"
+                th:href="@{power/{id} (id=( ${power.powerId} ) ) }">
+              <img src="../../img/info.png" alt="info" class="img-fluid controlBtn">
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#"
+                th:href="@{power/edit/{id} (id=( ${power.powerId} ) ) }">
+              <img src="../../img/edit.png" alt="edit" class="img-fluid controlBtn">
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#"
+                th:href="@{power/delete/{id} (id=( ${power.powerId} ) ) }">
+              <img src="../../img/delete.png" alt="delete" class="img-fluid controlBtn">
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

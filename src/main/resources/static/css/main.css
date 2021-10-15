@@ -1,0 +1,263 @@
+@media screen and (max-width:970px ){
+  .nav-link > span{
+    display: none;
+  }
+}
+body{
+  background-color: #212D40;
+}
+
+h1 > a:hover {
+  text-decoration: none;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+ol{
+  list-style-type: none;
+  margin: .5rem;
+  padding-left: 0px;
+}
+label{
+  padding-right: .5em
+}
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.alert{
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  display: block;
+}
+.addEntityRow{
+  justify-content: center;
+}
+.btnGroup{
+  padding-top: 1em;
+  border-top: 1px solid gray;
+}
+.btnsBackSave > * {
+  display: flex;
+  justify-content: center;
+}
+.btnsBackConfirmDelete > * {
+  display: flex;
+  justify-content: center;
+}
+.btnsBackEditDelete > * {
+  display: flex;
+  justify-content: center;
+}
+.centered{
+  display: flex;
+  align-self: center;
+}
+.pageBodyCol{
+  background-color: #EDEDED;
+  max-width: 950px;
+}
+
+#header{
+  max-width: 950px;
+  background-color: #c8ced0;
+}
+#navBar{
+  max-width: 950px;
+  background-color: #c8ced0;
+}
+.pageBodyRow{
+  justify-content: center;
+}
+.pageDescription {
+    justify-content: center;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.pageControlsRow {
+    justify-content: center;
+    text-align: center;
+}
+.pageControlsCol > * {
+  padding-top: .2em;
+  padding-bottom: .2em;
+}
+
+.entityControls{
+  display:flex;
+  justify-content: space-around;
+  width:100%;
+  padding: .2em;
+}
+.entityControls > * {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.entityRow{
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: .2em;
+  margin-bottom: .2em;
+  border-bottom: 1px solid gray;
+  min-height: 70px;
+}
+.entityRow > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/* removes border from last entityRow which is in a div with different classes,
+but those classes are all wrapped in entityList in identities, organizations, etc*/
+.entityList > *:last-child{
+  border-bottom: 0px;
+}
+.sightingControls{
+  display:flex;
+}
+.identityRow{
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+.identityName {
+  justify-content: space-between;
+}
+.identityImg{
+  justify-content: flex-end;
+}
+.identityName{
+  justify-content: flex-start;
+}
+/* by concatenating class names we can apply only if both exist*/
+.input-group.date{
+  padding: 1em 1em 0em;
+}
+.sightingLocation > * {
+  font-weight: bold;
+}
+.sightingDescriptionRow{
+  margin-top: .05em;
+  margin-bottom: .05em;
+}
+.sightingIdentityList > * {
+  min-height: 70px;
+  justify-content: center;
+}
+.filterRow{
+  justify-content: center;
+}
+.filterRow > * {
+  align-items: center;
+  display: flex;
+
+}
+.listTitleRow{
+  background-color: #C2C2C2;
+}
+.listTitleRow > * {
+  text-align: center;
+}
+
+.heroList > * {
+  text-align: center;
+}
+.villianList > * {
+  text-align: center;
+}
+
+.sightingList{
+  align-content: center;
+  width: 100%;
+}
+.sightingListCol{
+  display:grid;
+  align-items: center;
+}
+.sightingRow{
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+.sightingWrapper{
+  display:block;
+  max-width: 560px;
+  background-color: white;
+  padding-top: .2em;
+}
+
+.sightingLocation{
+  display: block;
+  text-align: left;
+  font-size: 1.2em;
+}
+.sightingDate{
+  display: block;
+  text-align: right;
+}
+.sightingDescription{
+  display: block;
+  text-align: left;
+  font-size: .8em;
+  color: gray;
+}
+
+.powerWrapper{
+  padding:.2em;
+  min-width: 170px;
+  max-width: 230px;
+}
+.powerDetailRow{
+  text-align: center;
+  padding-bottom: .2em;
+}
+.powerDetailRow > div {
+  height: 75px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.idImg{
+  max-height: 64px;
+  width : auto;
+  height: auto;
+  display: flex;
+}
+.powerTitleRow{
+  font-weight: bold;
+  text-align: center;
+}
+.powerTitleRow > div {
+  display: flex;
+  min-height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.powerListContainer{
+  justify-content: center;
+}
+.controlBtn{
+  max-width: 40px;
+  max-height: 40px;
+  display: flex;
+  align-self: center;
+}
+.form-group {
+  align-items: center;
+  justify-content: center;
+}
+.fieldRow{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.centered{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

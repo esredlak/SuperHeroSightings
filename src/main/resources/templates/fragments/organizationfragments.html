@@ -1,0 +1,185 @@
+<div th:fragment="organizationFormBody">
+  <input hidden th:value="${organization.orgId}" type="text" name="orgId" id="entityId">
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="orgName">Name</label>
+    <div class="col-4">
+      <input type="text" name="orgName" th:field="*{orgName}" class="form-control">
+      <p th:if="${#fields.hasErrors('orgName')}"
+        th:errors="*{orgName}" class="alert alert-warning" >Invalid name</p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="orgDescription">Description</label>
+    <div class="col-4">
+      <textarea name="orgDescription" rows="5" th:field="*{orgDescription}"
+      class="form-control"></textarea>
+      <p th:if="${#fields.hasErrors('orgDescription')}"
+        th:errors="*{orgDescription}" class="alert alert-warning col-12">Invalid descr</p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="locId">Location</label>
+    <div class="col-4">
+      <select class="form-select form-control" name="locId" th:field="*{locId}">
+        <option value="locId"
+        th:each="loc : ${locations}"
+        th:value="${loc.locId}"
+        th:text="${loc.locName}"
+        th:selected="${ {loc.locId}.equals( {organization.locId})  }">Option 1</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <a href="../../location/new">
+        <img src="../../img/new.png" alt="newLoc" class="controlBtn">
+      </a>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="identityIds">Identities</label>
+    <div class="col-4">
+      <select multiple class="form-control form-select" name="identityIds"
+      th:field="*{identityIds}" style="overflow:hidden">
+        <optgroup label="Heroes">
+          <option value="identityId"
+              th:each="identity : ${allIdentities}"
+              th:text="${identity.identityName}"
+              th:value="${identity.identityId}"
+              th:if="${identity.hero}"
+              th:selected="${ {organization.identities}.contains(identity) }"
+              >The Hulk</option>
+        </optgroup>
+        <optgroup label="Villian/Unknown">
+          <option value="identityId"
+              th:each="identity : ${allIdentities}"
+              th:text="${identity.identityName}"
+              th:value="${identity.identityId}"
+              th:unless="${identity.hero}"
+              th:selected="${ {organization.identities}.contains(identity) }"
+              >Doc Ock</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="col-4">
+      <a href="../../identity/new">
+        <img src="../../img/new.png" alt="newIdentity" class="controlBtn">
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div th:fragment="organizationFormBodyReadOnly">
+
+  <input hidden th:value="${organization.orgId}" type="text" name="orgId" id="entityId">
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="orgName">Name</label>
+    <div class="col-4">
+      <input type="text" name="orgName" th:field="*{orgName}"
+      class="form-control" readonly>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="orgDescription">Description</label>
+    <div class="col-4">
+      <textarea name="orgDescription" rows="5" th:field="*{orgDescription}"
+      class="form-control" readonly></textarea>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="locId">Location</label>
+    <div class="col-4">
+      <input type="text" th:field="*{loc.locName}" class="form-control" readonly>
+    </div>
+    <div class="col-4">
+    </div>
+  </div>
+
+  <div th:with="identities = ${organization.identities}">
+    <div th:replace="fragments/identityfragments :: identityList">
+      identity list
+    </div>
+  </div>
+
+</div>
+
+<div th:fragment="organizationList" class="row">
+
+  <div class="col-12 organizationList entityList">
+    <div class="row organizationListTitleRow listTitleRow">
+      <div class="col-3 organizationListTitleName">
+        Organization
+      </div>
+      <div class="col-3 col-md-4 organizationListTitleDescription">
+        Description
+      </div>
+      <div class="col-4 col-md-3 organizationListTitleAddress">
+        Address
+      </div>
+      <div class="col-2 organizationListTitleControls">
+      </div>
+    </div>
+    <!--organization identities go here-->
+
+    <div class="row entityRow" th:each="(org : ${organizations})">
+      <div class="col-3 organizationName">
+          <span
+          th:text="${org.orgName}">The Avengers</span>
+      </div>
+      <div class="col-3 col-md-4 organizationDescription">
+        <span
+        th:text="${org.orgDescription}">Save the world like a few thousand times or w/e.</span>
+      </div>
+      <div class="col-4 col-md-3 organizationAddress">
+        <ol>
+          <li th:text="${org.loc.street}">4 Times Square</li>
+          <li th:text="${org.loc.street2}">Suite 100</li>
+          <li th:text="|${org.loc.city} ,  ${org.loc.state} ${org.loc.zip}|">New York, NY 10036</li>
+          <li th:text="|${org.loc.latitude} ,  ${org.loc.longitude}|">15.2323, -30.7854</li>
+        </ol>
+      </div>
+      <div class="col-2 d-flex entityControls">
+        <div class="row d-flex">
+          <div class="col-12 col-lg-4 detailsBtnWrapper">
+            <a href="#" class=""
+                th:href="@{organization/{id} (id=( ${org.orgId} ) ) }">
+              <img src="../../img/info.png" alt="info" class="img-fluid controlBtn">
+            </a>
+          </div>
+          <div class="col-12 col-lg-4 editBtnWrapper">
+            <a href="#" class=""
+                th:href="@{organization/edit/{id} (id=( ${org.orgId} ) ) }">
+              <img src="../../img/edit.png" alt="edit" class="img-fluid controlBtn">
+            </a>
+          </div>
+          <div class="col-12 col-lg-4 deleteBtnWrapper">
+            <a href="#" class=""
+                th:href="@{organization/delete/{id} (id=( ${org.orgId} ) ) }">
+              <img src="../../img/delete.png" alt="delete" class="img-fluid controlBtn">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

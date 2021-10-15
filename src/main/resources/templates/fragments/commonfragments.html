@@ -1,0 +1,76 @@
+<nav class="navbar navbar-text navbar-expand navbar-light" th:fragment="navbar">
+    <ul class="nav navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link btn btn-link" id="navButtonSightings" href="/sightings">
+          <i class="fas fa-binoculars"></i>
+          <span>Sightings</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn btn-link" id="navButtonSightings" href="/identities">
+          <i class="fas fa-address-card"></i>
+          <span>Identities</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn btn-link" id="navButtonSightings" href="/powers">
+          <i class="fas fa-bolt"></i>
+          <span>Powers</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn btn-link" id="navButtonSightings" href="/organizations">
+          <i class="fas fa-users"></i>
+          <span>Organizations</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn btn-link" id="navButtonSightings" href="/locations">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Locations</span>
+        </a>
+      </li>
+    </ul>
+</nav>
+
+<div class="row form-group btnsBackSave btnGroup" th:fragment="btnsBackSave">
+  <div class="col-6">
+    <a class="backBtn">
+      <img src="../../img/back.png" alt="back" class="controlBtn backBtn">
+    </a>
+  </div>
+  <div class="col-6">
+    <input type="image" name="submitNewBtn" value=""
+    src="../../img/save.png" class="controlBtn saveBtn">
+  </div>
+</div>
+
+<div class="row form-group btnsBackConfirmDelete btnGroup" th:fragment="btnsBackConfirmDelete">
+  <div class="col-6">
+    <a class="backBtn">
+      <img src="../../img/back.png" alt="back" class="controlBtn backBtn">
+    </a>
+  </div>
+  <div class="col-6">
+    <button type="submit" name="confirmDeleteBtn" class="btn btn-danger confirmDelete"
+    >Confirm Delete</button>
+  </div>
+</div>
+
+<div class="row form-group btnsBackEditDelete btnGroup" th:fragment="btnsBackEditDelete">
+  <div class="col-4">
+    <a class="backBtn">
+      <img src="../../img/back.png" alt="back" class="controlBtn backBtn">
+    </a>
+  </div>
+  <div class="col-4">
+    <a class="editBtn">
+      <img src="../../img/edit.png" alt="edit" class="controlBtn">
+    </a>
+  </div>
+  <div class="col-4">
+    <a class="deleteBtn">
+      <img src="../../img/delete.png" alt="delete" class="controlBtn">
+    </a>
+  </div>
+</div>

@@ -1,0 +1,285 @@
+<div th:fragment="identityFormBody">
+
+  <input hidden th:value="${identity.identityId}" type="text" name="identityId" id="entityId">
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="identityName">Name</label>
+    <div class="col-4">
+      <input type="text" name="identityName" th:field="*{identityName}" class="form-control">
+      <p th:if="${#fields.hasErrors('identityName')}"
+      th:errors="*{identityName}" class="alert alert-warning"></p> <!-- -->
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="file">Upload Image</label>
+    <div class="col-4">
+      <input type="file" name="file" accept="image/png , image/jpeg , image/jpg, image/gif">
+      <!--<p th:if="${#fields.hasErrors('identityImg')}"
+      th:errors="*{identityImg}" class="alert alert-warning"></p>-->
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="hero">Alignment</label>
+    <div class="col-4">
+      <div class="form-check form-check-inline">
+         <!--  -->
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="hero" value="1"
+          th:field="*{hero}" checked>
+          Hero
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="notHero" value="0"
+          th:field="*{hero}">
+          Villian/Unknown
+        </label>
+      </div>
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="identityDescription">Description</label>
+    <div class="col-4">
+      <textarea name="identityDescription" rows="1" th:field="*{identityDescription}"
+      class="form-control"></textarea>
+      <p th:if="${#fields.hasErrors('identityDescription')}"
+        th:errors="*{identityDescription}" class="alert alert-warning">Invalid descr</p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="powerIds">Power(s)</label>
+    <div class="col-4">
+      <select multiple class="form-control" name="powerIds"
+        th:field="*{powerIds}" >
+        <!-- Powers filled in hier -->
+        <option value="powerId"
+        th:each="power : ${allPowers}"
+        th:text="${power.powerName}"
+        th:value="${power.powerId}"
+        th:selected="${ {identity.powers}.contains(power) }">
+        Super Strength</option>
+      </select>
+      <p th:if="${#fields.hasErrors('powerIds')}"
+        th:errors="*{powerIds}" class="alert alert-warning">Invalid descr</p>
+    </div>
+    <div class="col-4">
+      <a href="../power/new">
+        <img src="../../img/new.png" alt="newPower" class="controlBtn">
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div th:fragment="identityFormBodyReadOnly">
+  <input hidden th:value="${identity.identityId}" type="text" name="identityId" id="entityId">
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="identityName">Name</label>
+    <div class="col-4">
+      <input type="text" name="identityName" th:field="*{identityName}"
+        class="form-control" readonly>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="hero">Alignment</label>
+    <div class="col-4">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hero" value="1"
+        th:field="*{hero}" readonly> <!--  -->
+        <label class="form-check-label" for="hero">Hero</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hero" value="0"
+        th:field="*{hero}" readonly>
+        <label class="form-check-label" for="notHero">Villian/Unknown</label>
+      </div>
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="identityDescription">Description</label>
+    <div class="col-4">
+      <textarea name="identityDescription" rows="1" th:field="*{identityDescription}"
+      class="form-control" readonly></textarea>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div th:with="powers = ${identity.powers}">
+    <div>
+      <p>Powers</p>
+    </div>
+    <div th:replace="fragments/powerfragments :: powerList">
+      power list
+    </div>
+  </div>
+
+</div>
+
+<div th:fragment="identityList" class="row identityList">
+  <div class="col-12 identityListCol">
+
+    <div class="row">
+      <div class="col-12 heroList entityList">
+
+        <div class="row heroListTitleRow listTitleRow">
+          <div class="col-4 heroListTitleName">
+            Hero
+          </div>
+          <div class="col-3 heroListTitlePowers">
+            Power(s)
+          </div>
+          <div class="col-3 heroListTitleOrganizations">
+            Organization(s)
+          </div>
+          <div class="col-2 heroListTitleControls">
+          </div>
+        </div>
+        <!--hero identities go here-->
+
+        <div class="row entityRow" th:each="id : ${identities}" th:if="${id.hero} == true">
+          <div class="col-2 identityImg">
+            <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+            src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
+          </div>
+          <div class="col-2 identityName">
+            <span th:text="${id.identityName}">The Hulk</span>
+          </div>
+          <div class="col-3 identityPowers">
+            <ul>
+              <li
+              th:each="power : ${id.powers}"
+              th:text="${power.powerName}"
+              >Super Strength</li>
+            </ul>
+          </div>
+          <div class="col-3 identityOrganizations">
+            <ul>
+              <li
+              th:each="org : ${orgsByIdentityIds[__${id.identityId}__]}"
+              th:text="${org.orgName}">The Avengers</li>
+            </ul>
+          </div>
+          <div class="col-2 d-flex entityControls">
+            <div class="row d-flex">
+              <div class="col-12 col-lg-4 detailsBtnWrapper">
+                <a href="#"
+                    th:href="@{../../identity/{id} (id=( ${id.identityId} ) ) }">
+                  <img src="../../img/info.png" alt="info" class="img-fluid controlBtn">
+                </a>
+              </div>
+              <div class="col-12 col-lg-4 editBtnWrapper">
+                <a href="#" class="editBtnWrapper"
+                    th:href="@{../../identity/edit/{id} (id=( ${id.identityId} ) ) }">
+                  <img src="../../img/edit.png" alt="edit" class="img-fluid controlBtn">
+                </a>
+              </div>
+              <div class="col-12 col-lg-4 deleteBtnWrapper">
+                <a href="#" class="deleteBtnWrapper"
+                    th:href="@{../../identity/delete/{id} (id=( ${id.identityId} ) ) }">
+                  <img src="../../img/delete.png" alt="delete" class="img-fluid controlBtn">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-12 villianList entityList">
+
+        <div class="row villianListTitleRow listTitleRow">
+          <div class="col-4 heroListTitleName">
+            Villian/Unknown
+          </div>
+          <div class="col-3 heroListTitlePowers">
+            Power(s)
+          </div>
+          <div class="col-3 heroListTitleOrganizations">
+            Organization(s)
+          </div>
+          <div class="col-2 heroListTitleControls">
+          </div>
+        </div>
+        <!--villian identities go here-->
+
+        <div class="row entityRow"
+        th:each="id : ${identities}"
+        th:if="${id.hero} == false">
+          <div class="col-2 identityImg">
+            <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+            src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
+          </div>
+          <div class="col-2 identityName">
+            <span th:text="${id.identityName}">The Hulk</span>
+          </div>
+          <div class="col-3 identityPowers">
+            <ul>
+              <li
+              th:each="power : ${id.powers}"
+              th:text="${power.powerName}">Big Brain</li>
+            </ul>
+          </div>
+          <div class="col-3 identityOrganizations">
+            <ul>
+              <li
+              th:each="org : ${orgsByIdentityIds[__${id.identityId}__]}"
+              th:text="${org.orgName}">Sinister Six</li>
+            </ul>
+          </div>
+          <div class="col-2 d-flex entityControls">
+            <div class="row d-flex">
+              <div class="col-12 col-lg-4 detailsBtnWrapper">
+                <a href="#"
+                    th:href="@{../../identity/{id} (id=( ${id.identityId} ) ) }">
+                  <img src="../../img/info.png" alt="info" class="img-fluid controlBtn">
+                </a>
+              </div>
+              <div class="col-12 col-lg-4 editBtnWrapper">
+                <a href="#" class="editBtnWrapper"
+                    th:href="@{../../identity/edit/{id} (id=( ${id.identityId} ) ) }">
+                  <img src="../../img/edit.png" alt="edit" class="img-fluid controlBtn">
+                </a>
+              </div>
+              <div class="col-12 col-lg-4 deleteBtnWrapper">
+                <a href="#" class="deleteBtnWrapper"
+                    th:href="@{../../identity/delete/{id} (id=( ${id.identityId} ) ) }">
+                  <img src="../../img/delete.png" alt="delete" class="img-fluid controlBtn">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

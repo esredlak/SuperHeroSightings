@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>SuperHero Sightings</title>
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+  </head>
+  <body>
+    <!-- Page Body-->
+    <div class="container-fluid">
+      <div class="row" id="header">
+        <div class="col-12 text-center">
+          <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+        </div>
+      </div>
+      <div class="row justify-content-center" id="navBar">
+        <nav class="navbar navbar-text navbar-expand navbar-light"
+        th:replace="fragments/commonfragments :: navbar">
+            <ul class="nav navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/sightings">
+                  <i class="fas fa-binoculars"></i>
+                  <span>Sightings</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/identities">
+                  <i class="fas fa-address-card"></i>
+                  <span>Identities</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/powers">
+                  <i class="fas fa-bolt"></i>
+                  <span>Powers</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/organizations">
+                  <i class="fas fa-users"></i>
+                  <span>Organizations</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/locations">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Locations</span>
+                </a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="row pageBodyRow">
+      <div class="col-12 pageBodyCol">
+        <div class="row pageDescription">
+          <div class="col-11">
+            <h3>Welcome to the SuperHero Sightings WebApp!</h3>
+          </div>
+          <br>
+          <div class="col-11 col-sm-10 ">
+            You can use this tool to view, add, edit, and delete sightings for Superheroes and Supervillians. Their identities, powers, and organizations can also be managed!
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row sightingList" th:replace="fragments/sightingfragments :: sightingList">
+          <div class="col-12 sightingListCol">
+            <!--Sightings go here-->
+
+            <div th:each="sighting : ${sightings}" class="row sightingRow">
+              <div class="col-11 col-sm-10 col-m-8 col-lg-6 sightingWrapper mx-auto">
+                <div class="row sightingHead d-flex">
+                  <!--Need a row thjat's split into 2 colums for Loc and Date,
+                and a row for description-->
+                  <div class="col-12">
+                    <div class="row sightingLocDateRow">
+                      <div class="col-8 sightingLocation">
+                        <span th:text="${sighting.loc.locName}" >Avenger's Tower</span>
+                      </div>
+                      <div class="col-4 sightingDate">
+                        <span th:text="${sighting.sightingDate}" >9/8/2021</span>
+                      </div>
+                    </div>
+                    <div class="row sightingDescriptionRow">
+                      <div class="col-12 sightingDescription"
+                      th:text="${sighting.sightingDescription}">
+                        <span>Just palling around. This description could wind up being pretty long though. Wie sieht das? Und wann es ist sehr lang? Ich hoffe est funktioniert gut. </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row sightIdentityListRow list-unstyled">
+                  <div class="col-6 sightingHeroList">
+                    <ul>
+                      <li class="media"
+                      th:each="id : ${sighting.identities}"
+                      th:if="${id.hero} == true"
+                      >
+                        <!--need to make the images work-->
+                        <img src="../../img/hulk.webp" class="mr-3 idImg" alt="">
+                        <div class="media-body sightingIdName"
+                        th:text="${id.identityName}">
+                          The Hulk
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-6 sightingVillianList list-unstyled">
+                    <ul>
+                      <li class="media"
+                      th:each="id : ${sighting.identities}"
+                      th:if="${id.hero} == false">
+                        <img src="../../img/docOc.png" class="mr-3 idImg" alt="">
+                        <div class="media-body sightingIdName"
+                        th:text="${id.identityName}">
+                          Doc Ock
+                        </div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+                <div class="row entityControls">
+                  <ul class="d-flex entityControls">
+                    <li class="sightingControl controlBtn">
+                      <img src="../img/info.png" alt="info" class="img-fluid ">
+                    </li>
+                    <li class="sightingControl controlBtn">
+                      <img src="../img/edit.png" alt="edit" class="img-fluid ">
+                    </li>
+                    <li class="sightingControl controlBtn">
+                      <img src="../img/delete.png" alt="delete" class="img-fluid sightDeleteBtn sightingControl">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!--End of sightings-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- JS -->
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/90b26b5e3d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../js/main.js">    </script>
+    <!-- delete script inserted here to hide edit and delete buttons on sightings. -->
+    <script type="text/javascript" src="../../js/delete.js">    </script>
+  </body>
+</html>

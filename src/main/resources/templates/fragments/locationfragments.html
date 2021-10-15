@@ -1,0 +1,263 @@
+<div th:fragment="locationFormBody">
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="locName">Name</label>
+        <input type="text" name="locName" th:field="*{locName}" class="form-control"/>
+        <p th:if="${#fields.hasErrors('locName')}"
+          th:errors="*{locName}" class="alert alert-warning col-12" >Invalid name</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="locDescription">Description</label>
+        <textarea name="locDescription" rows="1" th:field="*{locDescription}" class="form-control"></textarea>
+        <p th:if="${#fields.hasErrors('locDescription')}"
+          th:errors="*{locDescription}" class="alert alert-warning col-12">Invalid descr</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="Street">Street</label>
+        <input type="text" name="Street" value="" th:field="*{street}" class="form-control">
+        <p th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}" class="alert alert-warning col-12">Invalid Street</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="Street2">Street Line 2</label>
+        <input type="text" name="street2" value="" th:field="*{street2}" class="form-control">
+        <p th:if="${#fields.hasErrors('street2')}"
+          th:errors="*{street2}" class="alert alert-warning col-12">Invalid Street Line 2</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="city">City</label>
+        <input type="text" name="city" value="" th:field="*{city}" class="form-control">
+        <p th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}" class="alert alert-warning col-12">Invalid City</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="State">State</label>
+        <input type="text" name="State" value="" th:field="*{state}" class="form-control">
+        <p th:if="${#fields.hasErrors('state')}"
+          th:errors="*{state}" class="alert alert-warning col-12">Invalid State</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="Zip">Zip</label>
+        <input type="text" name="Zip" value="" th:field="*{zip}" class="form-control">
+        <p th:if="${#fields.hasErrors('zip')}"
+          th:errors="*{zip}" class="alert alert-warning col-12">Invalid Zip</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="latitude">Latitude</label>
+        <input type="text" name="latitude" value="" th:field="*{latitude}" class="form-control">
+        <p th:if="${#fields.hasErrors('latitude')}"
+          th:errors="*{latitude}" class="alert alert-warning col-12">Invalid latitude</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="longitude">Longitude</label>
+        <input type="text" name="longitude" value="" th:field="*{longitude}" class="form-control">
+        <p th:if="${#fields.hasErrors('longitude')}"
+          th:errors="*{longitude}" class="alert alert-warning col-12">Invalid longitude</p>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+
+</div>
+
+<div th:fragment="locationFormBodyReadOnly">
+  <input hidden th:value="*{locId}" type="text" name="locId" id="entityId">
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="locName">Name</label>
+        <input type="text" name="locName" th:field="*{locName}"
+          class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="locDescription">Description</label>
+        <textarea name="locDescription" rows="1" th:field="*{locDescription}"
+          class="form-control" readonly></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="Street">Street</label>
+        <input type="text" name="Street" value="" th:field="*{street}"
+          class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="Street2">Street Line 2</label>
+        <input type="text" name="street2" th:field="*{street2}"
+        class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="city">City</label>
+        <input type="text" name="city" value="" th:field="*{city}"
+        class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="State">State</label>
+        <input type="text" name="State" value="" th:field="*{state}"
+        class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="Zip">Zip</label>
+        <input type="text" name="Zip" value="" th:field="*{zip}"
+        class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="latitude">Latitude</label>
+        <input type="text" name="latitude" value="" th:field="*{latitude}"
+        class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-8 col-m-6 col-lg-5 col-xl-4">
+      <div class="row fieldRow">
+        <label class="col-form-label" for="longitude">Longitude</label>
+        <input type="text" name="longitude" value="" th:field="*{longitude}"
+        class="form-control" readonly>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+
+</div>
+
+<div class="row locationList" th:fragment="locationList">
+  <div class="col-12 locationListCol entityList">
+    <div class="row locationListTitleRow listTitleRow">
+      <div class="col-3 locationListTitleName">
+        Location
+      </div>
+      <div class="col-3 col-md-4 locationListTitleDescription">
+        Description
+      </div>
+      <div class="col-4 col-md-3 locationListTitleAddress">
+        Address
+      </div>
+      <div class="col-2 locationListTitleControls">
+      </div>
+    </div>
+    <!--location identities go here-->
+
+    <div class="row entityRow"
+    th:each="(loc : ${locs})">
+      <div class="col-3 locationName">
+          <div
+          th:text="${loc.locName}">The Avengers</div>
+      </div>
+      <div class="col-3 col-md-4 locationDescription">
+        <div
+        th:text="${loc.locDescription}">Save the world like a few thousand times or w/e.</div>
+      </div>
+      <div class="col-4 col-md-3 locationAddress">
+        <ol>
+          <li th:text="${loc.street}">4 Times Square</li>
+          <li th:text="${loc.street2}">Suite 100</li>
+          <li th:text="|${loc.city},  ${loc.state} ${loc.zip}|">New York, NY 10036</li>
+          <li th:text="|${loc.latitude} ,  ${loc.longitude}|">15.2323, -30.7854</li>
+        </ol>
+      </div>
+
+      <div class="col-2 d-flex entityControls">
+        <div class="row d-flex">
+          <div class="col-12 col-lg-4 detailsBtnWrapper">
+            <a href="#" class=""
+                th:href="@{location/{id} (id=( ${loc.locId} ) ) }">
+              <img src="../../img/info.png" alt="info" class="img-fluid controlBtn">
+            </a>
+          </div>
+          <div class="col-12 col-lg-4 editBtnWrapper">
+            <a href="#" class=""
+                th:href="@{location/edit/{id} (id=( ${loc.locId} ) ) }">
+              <img src="../../img/edit.png" alt="edit" class="img-fluid controlBtn">
+            </a>
+          </div>
+          <div class="col-12 col-lg-4 deleteBtnWrapper">
+            <a href="#" class=""
+                th:href="@{location/delete/{id} (id=( ${loc.locId} ) ) }">
+              <img src="../../img/delete.png" alt="delete" class="img-fluid controlBtn">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

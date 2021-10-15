@@ -1,0 +1,215 @@
+<div th:fragment="sightingFormBody">
+  <input hidden th:value="${sighting.sightingId}" type="text" name="sightingId" id="entityId">
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="sightingDate">Date</label>
+    <div class="col-4">
+      <input type="date" name="sightingDate" class="form-control"
+      th:field="*{sightingDate}" >
+      <p th:if="${#fields.hasErrors('sightingDate')}"
+        th:errors="*{sightingDate}" class="alert alert-warning" >Invalid date</p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="locId">Location</label>
+    <div class="col-4">
+      <select class="form-control" name="locId" th:field="*{locId}">
+        <option value="locId"
+        th:each="loc : ${locations}"
+        th:text="${loc.locName}"
+        th:value="${loc.locId}"
+        th:selected="${ {sighting.loc}.equals( {loc}) }">
+          Options here
+        </option>
+      </select>
+    </div>
+    <div class="col-4">
+      <a href="../../location/new">
+        <img src="../../img/new.png" alt="newLoc" class="controlBtn">
+      </a>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="sightingDescription">Description</label>
+    <div class="col-4">
+      <textarea name="sightingDescription" rows="2" class="form-control"
+      th:field="*{sightingDescription}"></textarea>
+      <p th:if="${#fields.hasErrors('sightingDescription')}"
+        th:errors="*{sightingDescription}" class="alert alert-warning" >Invalid date</p>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="identityIds">Identities</label>
+    <div class="col-4">
+      <select multiple class="form-control" name="identityIds" id="identityIds"
+       th:field="*{identityIds}"> <!--  -->
+        <optgroup label="Heroes">
+          <option value="identityId"
+          th:each="identity : ${allIdentities}"
+          th:text="${identity.identityName}"
+          th:value="${identity.identityId}"
+          th:if="${identity.hero}"
+
+          >The Hulk</option>
+          <!-- th:selected="${ {{sighting.identities}.contains(identity)} }" -->
+        </optgroup>
+        <optgroup label="Villian/Unknown">
+          <option value="identityId"
+          th:each="identity : ${allIdentities}"
+          th:text="${identity.identityName}"
+          th:value="${identity.identityId}"
+          th:unless="${identity.hero}"
+
+          >Doc Ock</option>
+          <!--  -->
+        </optgroup>
+      </select>
+      <p th:if="${#fields.hasErrors('identities')}"
+        th:errors="*{identities}" class="alert alert-warning" >Invalid date</p>
+    </div>
+    <div class="col-4">
+      <a href="../../identity/new">
+        <img src="../../img/new.png" alt="newId" class="controlBtn">
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div th:fragment="sightingFormBodyReadOnly">
+  <input hidden th:value="${sighting.sightingId}" type="text" id="entityId">
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="sightingDate">Date</label>
+    <div class="col-4">
+      <input type="date" name="sightingDate" class="form-control"
+      th:field="*{sightingDate}" readonly>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="locId">Location</label>
+    <div class="col-4">
+      <input type="text" th:field="*{loc.locName}" class="form-control" readonly>
+    </div>
+    <div class="col-4">
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <label class="col-4 col-form-label" for="sightingDescription">Description</label>
+    <div class="col-4">
+      <textarea name="sightingDescription" rows="2" class="form-control"
+      th:field="*{sightingDescription}" readonly></textarea>
+    </div>
+    <div class="col-4">
+      <!--Used to balance page-->
+    </div>
+  </div>
+
+  <!-- ${identities} is not passed in with this API, but is required for identityList.
+    So we'll try and strip the identityList from the sighting and use that!-->
+  <div th:with="identities = ${sighting.identities}">
+    <div th:replace="fragments/identityfragments :: identityList">
+      identity list
+    </div>
+  </div>
+
+
+</div>
+
+<div th:fragment="sightingList" class="row sightingList" >
+  <div class="col-12 sightingListCol">
+    <!--Sightings go here-->
+
+    <div class="row sightingRow"
+    th:each="sighting : ${sightings}">
+      <div class="col-12 col-sm-9 col-lg-8 sightingWrapper mx-auto">
+        <div class="row sightingHead d-flex">
+          <!--Need a row thjat's split into 2 colums for Loc and Date,
+        and a row for description-->
+          <div class="col-12">
+            <div class="row sightingLocDateRow">
+              <div class="col-8 sightingLocation">
+                <span th:text="${sighting.loc.locName}">Avenger's Tower</span>
+              </div>
+              <div class="col-4 sightingDate">
+                <!-- hidden date for comparison to datepicker value format yyyy-mm-dd -->
+                <input type="hidden" class="hiddenSightingDate"
+                th:value="${sighting.sightingDate}" >
+                <span
+                  th:text="${#dates.format(sighting.sightingDate , 'MM/dd/yyyy')}">
+                  9/8/2021
+                </span>
+              </div>
+            </div>
+            <div class="row sightingDescriptionRow">
+              <div class="col-12 sightingDescription">
+                <span th:text="${sighting.sightingDescription}">Just palling around. This description could wind up being pretty long though. Wie sieht das? Und wann es ist sehr lang? Ich hoffe est funktioniert gut. </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row sightIdentityListRow list-unstyled">
+          <ul class="col-6 sightingIdentityList">
+            <li class="media"
+            th:each="id : ${sighting.identities}"
+            th:if="${id.hero} == true">
+              <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+              src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
+              <div class="media-body sightingIdName"
+              th:text="${id.identityName}">
+                The Hulk
+              </div>
+            </li>
+          </ul>
+          <ul class="col-6 sightingIdentityList list-unstyled">
+            <li class="media"
+            th:each="id : ${sighting.identities}"
+            th:if="${id.hero} == false">
+            <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+            src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
+              <div class="media-body sightingIdName"
+              th:text="${id.identityName}">
+                Doc Ock
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="row entityControlsRow entityControls sightingControls">
+          <div class="col-4 detailsBtnWrapper">
+            <a class="detailsBtn" href="#"
+            th:href="@{sighting/{id} (id=(${sighting.sightingId}) )}">
+              <img src="../../img/info.png" alt="edit" class="controlBtn">
+            </a>
+          </div>
+          <div class="col-4 editBtnWrapper">
+            <a class="editBtn" href="#"
+            th:href="@{sighting/edit/{id} (id=(${sighting.sightingId}) )}">
+              <img src="../../img/edit.png" alt="edit" class="controlBtn">
+            </a>
+          </div>
+          <div class="col-4 deleteBtnWrapper">
+            <a class="deleteBtn" href="#"
+              th:href="@{sighting/delete/{id} (id=(${sighting.sightingId}) )}">
+              <img src="../../img/delete.png" alt="delete" class="controlBtn">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <!--End of sightings-->
+  </div>
+</div>

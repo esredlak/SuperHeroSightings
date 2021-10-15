@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>SuperHero Sightings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/90b26b5e3d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+  </head>
+  <body>
+    <!-- Page Body-->
+    <div class="container-fluid">
+      <div class="row" id="header">
+        <div class="col-12 text-center">
+          <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+        </div>
+      </div>
+      <div class="row justify-content-center" id="navBar">
+        <nav class="navbar navbar-text navbar-expand-lg navbar-light "
+        th:replace="fragments/commonfragments :: navbar">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/sightings">Sightings</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/identities">Identities</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/powers">Powers</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/organizations">Organizations</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link btn" href="/locations">Locations</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+
+    <div class="row pageBodyRow">
+      <div class="col-12 pageBodyCol">
+
+        <div class="row pageDescription">
+          <div class="col-11">
+            <h3
+            th:text="|Edit ${identity.identityName}|">Edit {Identity Name}</h3>
+          </div>
+        </div>
+
+
+        <div class="row addEntityRow">
+          <div class="col-12 addEntityCol">
+            <!-- Form goes here -->
+            <form class="addEntityForm addIdentityForm"
+            th:action="@{/identity/edit/}"
+            method="post" th:object="${identity}" enctype="multipart/form-data"> <!--  {id} (id=(${identity.identityId}))-->
+
+              <div th:replace="fragments/identityfragments :: identityFormBody">
+
+              </div>
+
+              <div th:replace="fragments/commonfragments :: btnsBackSave">
+
+              </div>
+            </form>
+            <!--  -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- JS -->
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/90b26b5e3d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../js/main.js">    </script>
+    <script type="text/javascript" src="../../js/edit.js">    </script>
+  </body>
+</html>

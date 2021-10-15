@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop  
+          http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <!-- Bean definitions go here -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"/>
+    <bean id="locationMapper" class="com.ered.superherosighting.dao.locationMapper"/>
+    <bean id="organizationMapper" class="com.ered.superherosighting.dao.organizationMapper">
+        <constructor-arg reg="jdbcTemplate"/>
+        <constructor-arg reg="locationMapper"/>
+    </bean>
+    <bean id="powerMapper" class="com.ered.superherosighting.dao.powerMapper"/>
+    <bean id="sightingMapper" class="com.ered.superherosighting.dao.sightingMapper">
+        <constructor-arg reg="locationMapper"/>
+    </bean>
+    <bean id="superPersonMapper" class="com.ered.superherosighting.dao.superPersonMapper"/>
+    
+    <!-- Each DAO will need jdbc and the applicable mappers injected -->
+    <bean id="locationDaoDB" class="com.ered.superherosighting.dao.locationDaoDB">
+        <constructor-arg reg="locationMapper"/>
+        <constructor-arg reg="jdbcTemplate"/>
+    </bean>
+    <bean id="organizationDaoDB" class="com.ered.superherosighting.dao.organizationDaoDB">
+    </bean>    
+    <bean id="powerDaoDB" class="com.ered.superherosighting.dao.powerDaoDB">
+    </bean></beans>
+    <bean id="sightingDaoDB" class="com.ered.superherosighting.dao.sightingDaoDB">
+    </bean>
+    <bean id="superPersonDaoDB" class="com.ered.superherosighting.dao.superPersonDaoDB">
+    </bean>
+</beans>
