@@ -24,6 +24,9 @@ ol{
 label{
   padding-right: .5em
 }
+.container-fluid{
+  justify-content: center;
+}
 .row{
   margin-left: 0px;
   margin-right: 0px;
@@ -53,6 +56,11 @@ label{
   display: flex;
   justify-content: center;
 }
+.center{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 .centered{
   display: flex;
   align-self: center;
@@ -65,10 +73,13 @@ label{
 #header{
   max-width: 950px;
   background-color: #c8ced0;
+  align-self: center;
 }
+
 #navBar{
   max-width: 950px;
   background-color: #c8ced0;
+  align-self: center;
 }
 .pageBodyRow{
   justify-content: center;
@@ -130,10 +141,16 @@ but those classes are all wrapped in entityList in identities, organizations, et
   justify-content: space-between;
 }
 .identityImg{
-  justify-content: flex-end;
+  display: flex;
+  justify-content: center;
 }
-.identityName{
-  justify-content: flex-start;
+.idImg{
+  max-height: 64px;
+  width : auto;
+  height: auto;
+  display: flex;
+  padding: 0px;
+  float: right;
 }
 /* by concatenating class names we can apply only if both exist*/
 .input-group.date{
@@ -145,6 +162,9 @@ but those classes are all wrapped in entityList in identities, organizations, et
 .sightingDescriptionRow{
   margin-top: .05em;
   margin-bottom: .05em;
+}
+.sightingIdentityList{
+  max-width: 265px;
 }
 .sightingIdentityList > * {
   min-height: 70px;
@@ -171,7 +191,6 @@ but those classes are all wrapped in entityList in identities, organizations, et
 .villianList > * {
   text-align: center;
 }
-
 .sightingList{
   align-content: center;
   width: 100%;
@@ -188,7 +207,8 @@ but those classes are all wrapped in entityList in identities, organizations, et
   display:block;
   max-width: 560px;
   background-color: white;
-  padding-top: .2em;
+  padding-top: .5em;
+  padding-bottom: .5em;
 }
 
 .sightingLocation{
@@ -208,7 +228,7 @@ but those classes are all wrapped in entityList in identities, organizations, et
 }
 
 .powerWrapper{
-  padding:.2em;
+  padding:.8em;
   min-width: 170px;
   max-width: 230px;
 }
@@ -221,12 +241,7 @@ but those classes are all wrapped in entityList in identities, organizations, et
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.idImg{
-  max-height: 64px;
-  width : auto;
-  height: auto;
-  display: flex;
-}
+
 .powerTitleRow{
   font-weight: bold;
   text-align: center;

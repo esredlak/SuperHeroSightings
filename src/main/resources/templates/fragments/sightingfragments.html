@@ -160,28 +160,30 @@
             </div>
           </div>
         </div>
-        <div class="row sightIdentityListRow list-unstyled">
-          <ul class="col-6 sightingIdentityList">
+        <div class="row sightIdentityListRow">
+          <ul class="col sightingIdentityList">
             <li class="media"
             th:each="id : ${sighting.identities}"
             th:if="${id.hero} == true">
-              <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
-              src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
-              <div class="media-body sightingIdName"
-              th:text="${id.identityName}">
+              <div class="col identityName" th:text="${id.identityName}">
                 The Hulk
+              </div>
+              <div class="col identityImg">
+                <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+                src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
               </div>
             </li>
           </ul>
-          <ul class="col-6 sightingIdentityList list-unstyled">
+          <ul class="col sightingIdentityList">
             <li class="media"
             th:each="id : ${sighting.identities}"
             th:if="${id.hero} == false">
-            <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
-            src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
-              <div class="media-body sightingIdName"
-              th:text="${id.identityName}">
-                Doc Ock
+              <div class="col identityName" th:text="${id.identityName}">
+                Green Goblin
+              </div>
+              <div class="col identityImg">
+                <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+                src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
               </div>
             </li>
           </ul>

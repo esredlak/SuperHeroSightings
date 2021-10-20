@@ -11,14 +11,15 @@
   <body>
     <!-- Page Body-->
     <div class="container-fluid">
-      <div class="row" id="header">
-        <div class="col-12 text-center">
-          <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+      <div class="row center" th:replace="fragments/commonfragments :: header">
+        <div class="header col-12" id="header">
+          <div class="text-center">
+            <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+          </div>
         </div>
       </div>
-      <div class="row justify-content-center" id="navBar">
-        <nav class="navbar navbar-text navbar-expand navbar-light"
-        th:replace="fragments/commonfragments :: navbar">
+      <div class="row center" th:replace="fragments/commonfragments :: navbar">
+        <nav class="col-12 navbar navbar-text navbar-expand navbar-light" id="navBar">
             <ul class="nav navbar-nav mr-auto">
               <li class="nav-item">
                 <a class="nav-link btn btn-link" id="navButtonSightings" href="/sightings">
@@ -53,7 +54,7 @@
             </ul>
         </nav>
       </div>
-    </div>
+
     <div class="row pageBodyRow">
       <div class="col-12 pageBodyCol">
         <div class="row pageDescription">
@@ -145,8 +146,8 @@
           </div>
         </div>
       </div>
-
     </div>
+   </div>
     <!-- JS -->
     <script
 			  src="https://code.jquery.com/jquery-3.6.0.min.js"

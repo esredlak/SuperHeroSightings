@@ -10,29 +10,45 @@
   <body>
     <!-- Page Body-->
     <div class="container-fluid">
-      <div class="row" id="header">
-        <div class="col-12 text-center">
-          <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+      <div class="row center" th:replace="fragments/commonfragments :: header">
+        <div class="header col-12" id="header">
+          <div class="text-center">
+            <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+          </div>
         </div>
       </div>
-      <div class="row justify-content-center" id="navBar">
-        <nav class="navbar navbar-text navbar-expand-lg navbar-light"
-        th:replace="fragments/commonfragments :: navbar">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link btn" href="/sightings">Sightings</a>
+      <div class="row center" th:replace="fragments/commonfragments :: navbar">
+        <nav class="col-12 navbar navbar-text navbar-expand navbar-light" id="navBar">
+            <ul class="nav navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/sightings">
+                  <i class="fas fa-binoculars"></i>
+                  <span>Sightings</span>
+                </a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link btn" href="/identities">Identities</a>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/identities">
+                  <i class="fas fa-address-card"></i>
+                  <span>Identities</span>
+                </a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link btn" href="/powers">Powers</a>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/powers">
+                  <i class="fas fa-bolt"></i>
+                  <span>Powers</span>
+                </a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link btn" href="/organizations">Organizations</a>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/organizations">
+                  <i class="fas fa-users"></i>
+                  <span>Organizations</span>
+                </a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link btn" href="/locations">Locations</a>
+              <li class="nav-item">
+                <a class="nav-link btn btn-link" id="navButtonSightings" href="/locations">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Locations</span>
+                </a>
               </li>
             </ul>
         </nav>
@@ -46,7 +62,7 @@
           </div>
           <br>
           <div class="col-11 col-sm-10 ">
-            --insert descriptive paragraph about this page.--
+            Manage heroes and villians
           </div>
         </div>
 

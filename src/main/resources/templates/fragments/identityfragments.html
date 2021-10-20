@@ -132,7 +132,7 @@
   </div>
 
   <div th:with="powers = ${identity.powers}">
-    <div>
+    <div class="centered">
       <p>Powers</p>
     </div>
     <div th:replace="fragments/powerfragments :: powerList">
@@ -164,12 +164,16 @@
         <!--hero identities go here-->
 
         <div class="row entityRow" th:each="id : ${identities}" th:if="${id.hero} == true">
-          <div class="col-2 identityImg">
-            <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
-            src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
-          </div>
-          <div class="col-2 identityName">
-            <span th:text="${id.identityName}">The Hulk</span>
+          <div class="col-4 identityNameImg">
+            <div class="row">
+              <div class="col sightingIdentityName">
+                <span th:text="${id.identityName}">The Hulk</span>
+              </div>
+              <div class="col identityImg">
+                <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+                src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
+              </div>
+            </div>
           </div>
           <div class="col-3 identityPowers">
             <ul>
@@ -217,7 +221,7 @@
 
         <div class="row villianListTitleRow listTitleRow">
           <div class="col-4 heroListTitleName">
-            Villian/Unknown
+            Villian / Unknown
           </div>
           <div class="col-3 heroListTitlePowers">
             Power(s)
@@ -233,12 +237,16 @@
         <div class="row entityRow"
         th:each="id : ${identities}"
         th:if="${id.hero} == false">
-          <div class="col-2 identityImg">
-            <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
-            src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
-          </div>
-          <div class="col-2 identityName">
-            <span th:text="${id.identityName}">The Hulk</span>
+          <div class="col-4 identityNameImg">
+            <div class="row">
+              <div class="col identityName">
+                <span th:text="${id.identityName}">The Hulk</span>
+              </div>
+              <div class="col identityImg">
+                <img th:src="@{../../img/identities/{fileName} (fileName=(${id.imageFileName}) ) }"
+                src="../../img/identities/1.jpg" class="mr-3 idImg" alt="">
+              </div>
+            </div>
           </div>
           <div class="col-3 identityPowers">
             <ul>

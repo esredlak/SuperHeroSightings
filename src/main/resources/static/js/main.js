@@ -3,6 +3,7 @@ $(document).ready(function() {
   sizeIdentityIds();
   sizeIdentities();
   hideEmptyEntityList();
+  hideEmptySightingIdentityList();
 
 /*
   hideEmptyHeroList();
@@ -85,27 +86,12 @@ function hideEmptyEntityList(){
   })
 }
 
-/*
-function hideEmptyHeroList(){
-  var heroList = $('.heroList');
-  //console.log(heroList.children().length);
-  if (heroList.children().length == 1){
-    heroList.hide();
-  }
-}
+function hideEmptySightingIdentityList(){
+  var identityList = $('.sightingIdentityList');
 
-function hideEmptyVillianList(){
-  var villianList = $('.villianList');
-  //console.log(villianList.children().length);
-  if (villianList.children().length == 1){
-    villianList.hide();
-  }
+  identityList.each( function() {
+    if ($(this).children().length == 0 ){
+      $(this).hide();
+    }
+  })
 }
-
-function hideEmptyOrganizationList(){
-  var organizationList = $('.organizationList');
-  if (organizationList.children().length == 1) {
-    organizationList.hide();
-  }
-}
-*/

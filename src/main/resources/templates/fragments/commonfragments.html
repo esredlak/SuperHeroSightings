@@ -1,37 +1,46 @@
-<nav class="navbar navbar-text navbar-expand navbar-light" th:fragment="navbar">
-    <ul class="nav navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link btn btn-link" id="navButtonSightings" href="/sightings">
-          <i class="fas fa-binoculars"></i>
-          <span>Sightings</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link btn btn-link" id="navButtonSightings" href="/identities">
-          <i class="fas fa-address-card"></i>
-          <span>Identities</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link btn btn-link" id="navButtonSightings" href="/powers">
-          <i class="fas fa-bolt"></i>
-          <span>Powers</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link btn btn-link" id="navButtonSightings" href="/organizations">
-          <i class="fas fa-users"></i>
-          <span>Organizations</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link btn btn-link" id="navButtonSightings" href="/locations">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Locations</span>
-        </a>
-      </li>
-    </ul>
-</nav>
+<div class="row center" th:fragment="header">
+  <div class="header col-12" id="header">
+    <div class="text-center">
+      <h1><a href="/" class="text-dark">SuperHero Sightings</a></h1>
+    </div>
+  </div>
+</div>
+<div class="row center" th:fragment="navbar">
+  <nav class="col-12 navbar navbar-text navbar-expand navbar-light" id="navBar">
+      <ul class="nav navbar-nav mr-auto center">
+        <li class="nav-item">
+          <a class="nav-link btn btn-link" id="navButtonSightings" href="/sightings">
+            <i class="fas fa-binoculars"></i>
+            <span>Sightings</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-link" id="navButtonSightings" href="/identities">
+            <i class="fas fa-address-card"></i>
+            <span>Identities</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-link" id="navButtonSightings" href="/powers">
+            <i class="fas fa-bolt"></i>
+            <span>Powers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-link" id="navButtonSightings" href="/organizations">
+            <i class="fas fa-users"></i>
+            <span>Organizations</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-link" id="navButtonSightings" href="/locations">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Locations</span>
+          </a>
+        </li>
+      </ul>
+  </nav>
+</div>
 
 <div class="row form-group btnsBackSave btnGroup" th:fragment="btnsBackSave">
   <div class="col-6">
