@@ -52,6 +52,7 @@ public class ImageServiceImpl implements ImageService{
     }
 
     private String buildFileName(MultipartFile file, int identityId) {
+        //could replace with filename utils from apache or something
         String contentType = file.getContentType();
         String[] contentTypeArray = contentType.split("/");
         String fileType = contentTypeArray[contentTypeArray.length - 1];

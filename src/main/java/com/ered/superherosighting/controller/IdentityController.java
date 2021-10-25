@@ -74,6 +74,7 @@ public class IdentityController {
             @Valid Identity identity, BindingResult result){
         //check if we have any errors
         if (result.hasErrors()){
+            //could call serveNewIdentity
             List<Power> allPowers = powServ.getAllPowers();
             model.addAttribute("allPowers", allPowers);
             model.addAttribute("identity", identity);

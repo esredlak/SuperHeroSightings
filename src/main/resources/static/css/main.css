@@ -65,6 +65,9 @@ label{
   display: flex;
   align-self: center;
 }
+.col-form-label{
+  text-align: right;
+}
 .pageBodyCol{
   background-color: #EDEDED;
   max-width: 950px;
@@ -241,7 +244,6 @@ but those classes are all wrapped in entityList in identities, organizations, et
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .powerTitleRow{
   font-weight: bold;
   text-align: center;

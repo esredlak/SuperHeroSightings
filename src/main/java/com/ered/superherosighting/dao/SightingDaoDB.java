@@ -173,6 +173,7 @@ public class SightingDaoDB implements SightingDao{
         return sights;
     }
     
+    //much better to make get last n sightings and make 10 a param, or just make part of getSightings
     @Override
     public List<Sighting> getLastTenSightings() {
         final String GET_LAST_10 = "SELECT s.* , l.* "
